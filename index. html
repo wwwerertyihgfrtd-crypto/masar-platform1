@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مَسار | MASAR</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1220;color:#fff;font-family:Tahoma,Arial,sans-serif;line-height:1.8}
+header{background:#142238;padding:18px;text-align:center;border-bottom:2px solid #d9ad50}
+.logo{font-size:32px;color:#e9bd62;font-weight:bold}
+.logo small{display:block;font-size:11px;letter-spacing:4px;color:#ccc}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:15px}
+button{background:#20344f;color:white;border:1px solid #3c526e;padding:10px 15px;border-radius:9px;font-family:inherit;cursor:pointer}
+button:hover,.active{background:#e9bd62;color:#101827}
+main{max-width:1050px;margin:auto;padding:20px}
+.hero,.card{background:#142238;border:1px solid #2d405b;border-radius:16px;padding:22px;margin-bottom:16px}
+.hero{padding:35px 24px}
+h1{font-size:34px;margin:0}
+h2{color:#e9bd62}
+h3{color:#e9bd62}
+.gold{color:#e9bd62}
+.muted{color:#aebbd0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.section{display:none}
+.section.show{display:block}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;background:#0b1728;color:white;border:1px solid #3c526e;border-radius:8px;font-family:inherit}
+.action{background:#e9bd62;color:#101827;font-weight:bold}
+footer{text-align:center;color:#aebbd0;padding:25px;border-top:1px solid #29384d}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">مَسار <small>MASAR EDUCATION</small></div>
+<nav>
+<button onclick="show('home')">الرئيسية</button>
+<button onclick="show('library')">المكتبة</button>
+<button onclick="show('questions')">بنك الأسئلة</button>
+<button onclick="show('planner')">منظم المراجعة</button>
+<button onclick="show('assistant')">المساعد الذكي</button>
+<button onclick="show('news')">الأخبار</button>
+</nav>
+</header>
+<main>
+<section id="home" class="section show">
+<div class="hero">
+<p class="gold">بوابتك التعليمية إلى المستقبل</p>
+<h1>أهلاً بك في <span class="gold">مَسار</span></h1>
+<p class="muted">منصة تعليمية متكاملة لطلاب السادس الإعدادي في العراق، تجمع مصادر الدراسة والاختبارات وتنظيم المراجعة والأخبار في مكان واحد.</p>
+<button class="action" onclick="show('library')">ابدأ رحلتك</button>
+</div>
+<h2>خدمات المنصة</h2>
+<div class="grid">
+<div class="card"><h3>📚 المكتبة التعليمية</h3><p>الملازم والمصادر الدراسية حسب الفرع والمادة.</p></div>
+<div class="card"><h3>✍️ بنك الأسئلة</h3><p>اختبر معلوماتك وتابع مستواك الدراسي.</p></div>
+<div class="card"><h3>📅 منظم المراجعة</h3><p>خطط لمهامك ومواعيد مراجعتك.</p></div>
+<div class="card"><h3>🤖 المساعد الذكي</h3><p>مساعد تعليمي للإجابة عن استفساراتك.</p></div>
+</div>
+</section>
+<section id="library" class="section">
+<h2>📚 المكتبة التعليمية</h2>
+<div class="card">
+<label>الفرع الدراسي</label>
+<select><option>العلمي</option><option>الأدبي</option></select>
+<label>المادة</label>
+<select>
+<option>الرياضيات</option><option>الفيزياء</option>
+<option>الكيمياء</option><option>الأحياء</option>
+<option>اللغة العربية</option><option>اللغة الإنكليزية</option>
+<option>التربية الإسلامية</option><option>التاريخ</option>
+<option>الجغرافية</option><option>الاقتصاد</option>
+</select>
+<p class="muted">ستظهر الملازم والملفات هنا بعد إضافة المصادر إلى المكتبة.</p>
+</div>
+</section>
+<section id="questions" class="section">
+<h2>✍️ بنك الأسئلة</h2>
+<div class="card">
+<h3 id="question">ما العُضيّة المسؤولة عن إنتاج الطاقة في الخلية؟</h3>
+<div id="answers"></div>
+<p id="result"></p>
+<button class="action" onclick="newQuestion()">السؤال التالي</button>
+</div>
+</section>
+<section id="planner" class="section">
+<h2>📅 منظم المراجعة</h2>
+<div class="card">
+<input id="subject" placeholder="اسم المادة">
+<input id="task" placeholder="المهمة الدراسية">
+<button class="action" onclick="addTask()">إضافة المهمة</button>
+</div>
+<div id="tasks"></div>
+</section>
+<section id="assistant" class="section">
+<h2>🤖 المساعد التعليمي</h2>
+<div class="card">
+<textarea id="ask" rows="4" placeholder="اكتب سؤالك الدراسي هنا"></textarea>
+<button class="action" onclick="answer()">إرسال</button>
+<p id="reply"></p>
+<p class="muted">المساعد الذكي يحتاج إلى ربط خدمة الذكاء الاصطناعي بالخادم قبل تفعيله.</p>
+</div>
+</section>
+<section id="news" class="section">
+<h2>📰 مركز الأخبار</h2>
+<div class="grid">
+<div class="card"><h3>وزارة التربية</h3><p>القرارات والإعلانات الرسمية.</p></div>
+<div class="card"><h3>الامتحانات</h3><p>المواعيد والتعليمات الامتحانية.</p></div>
+<div class="card"><h3>النتائج</h3><p>مستجدات إعلان النتائج.</p></div>
+<div class="card"><h3>القبول الجامعي</h3><p>الجامعات والقبول المركزي.</p></div>
+<div class="card"><h3>المنح الدراسية</h3><p>فرص الدراسة والمنح.</p></div>
+<div class="card"><h3>العطل الرسمية</h3><p>أخبار العطل والإعلانات.</p></div>
+</div>
+</section>
+</main>
+<footer>مَسار MASAR © 2026 — جميع الحقوق محفوظة</footer>
+<script>
+function show(id){
+document.querySelectorAll('.section').forEach(function(s){s.classList.remove('show')});
+document.getElementById(id).classList.add('show');
+window.scrollTo(0,0);
+}
+var qs=[
+{q:'ما العُضيّة المسؤولة عن إنتاج الطاقة في الخلية؟',a:['النواة','الميتوكوندريا','الريبوسومات'],c:1},
+{q:'ما الغاز الذي تمتصه النباتات في البناء الضوئي؟',a:['الأوكسجين','النيتروجين','ثاني أوكسيد الكربون'],c:2},
+{q:'ما الوحدة الأساسية لبناء البروتين؟',a:['الأحماض الأمينية','الأحماض الدهنية','السكريات'],c:0}
+];
+var qi=0;
+function newQuestion(){
+var q=qs[qi];
+document.getElementById('question').textContent=q.q;
+document.getElementById('result').textContent='';
+document.getElementById('answers').innerHTML='';
+q.a.forEach(function(a,i){
+var b=document.createElement('button');
+b.textContent=a;
+b.style.display='block';
+b.style.width='100%';
+b.style.margin='8px 0';
+b.onclick=function(){
+document.getElementById('result').textContent=i===q.c?'إجابة صحيحة، أحسنت!':'إجابة غير صحيحة، حاول مجدداً.';
+};
+document.getElementById('answers').appendChild(b);
+});
+qi=(qi+1)%qs.length;
+}
+newQuestion();
+</script>
+</body>
+</html>
